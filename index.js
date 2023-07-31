@@ -6,6 +6,7 @@ const app = express();
 const cors = require("cors");
 
 const ProductRoutes = require("./routes/products_routes");
+const CartRoutes = require("./routes/cart_routes");
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 mongoose.connect(DB_URL);
 
 app.use("/api/v1", ProductRoutes);
+app.use("/api/v1", CartRoutes);
 
 app.listen(8000, (req, res) =>
   console.log(`Api is running on port ${API_PORT}`)

@@ -1,6 +1,4 @@
-const { Schema } = require("mongoose");
 const Product = require("../modules/products");
-const products = require("../modules/products");
 
 function ProductController() {}
 
@@ -16,7 +14,7 @@ ProductController.prototype.get = async (req, res) => {
     res.status(500).send({
       data: [],
       status: 500,
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -34,7 +32,7 @@ ProductController.prototype.getById = async (req, res) => {
       res.status(500).send({
         data: {},
         status: 500,
-        message: err,
+        message: err.message,
       });
     }
 };
@@ -52,7 +50,7 @@ ProductController.prototype.post = async (req, res) => {
     res.status(500).send({
       data: {},
       status: 500,
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -75,7 +73,7 @@ ProductController.prototype.put = async (req, res) => {
     res.status(500).send({
       data: {},
       status: 500,
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -92,7 +90,7 @@ ProductController.prototype.delete = async (req, res) => {
     res.status(500).send({
       data: {},
       status: 500,
-      message: err,
+      message: err.message,
     });
   }
 };
