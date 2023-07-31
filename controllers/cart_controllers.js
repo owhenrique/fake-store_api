@@ -1,4 +1,4 @@
-const Cart = require("../modules/cart");
+const Cart = require("../models/cart");
 
 function CartController() {}
 

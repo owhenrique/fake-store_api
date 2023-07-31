@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const ProductRoutes = require("./routes/products_routes");
 const CartRoutes = require("./routes/cart_routes");
+const swaggerRoutes = require("./routes/swagger_routes");
 
 dotenv.config();
 
@@ -19,7 +20,8 @@ mongoose.connect(DB_URL);
 
 app.use("/api/v1", ProductRoutes);
 app.use("/api/v1", CartRoutes);
+app.use("/", swaggerRoutes);
 
-app.listen(8000, (req, res) =>
-  console.log(`Api is running on port ${API_PORT}`)
+app.listen(API_PORT, (req, res) =>
+  console.log(`API RUNNING ON PORT::::::::::::${API_PORT}`)
 );

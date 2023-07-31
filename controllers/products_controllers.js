@@ -1,4 +1,4 @@
-const Product = require("../modules/products");
+const Product = require("../models/products");
 
 function ProductController() {}
 
