@@ -1,0 +1,667 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "API Documentation",
+      "description": "API Documentation for the product and cart endpoints",
+      "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Cart",
+        "description": "Operations related to carts"
+      },
+      {
+        "name": "Product",
+        "description": "Operations related to products"
+      }
+    ],
+    "paths": {
+      "/cart/{id}": {
+        "get": {
+          "tags": ["Cart"],
+          "summary": "Get a cart by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the cart to retrieve",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Cart successfully retrieved",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Cart data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Response message",
+                    "example": "Cart successfully found!"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/cart": {
+        "post": {
+          "tags": ["Cart"],
+          "summary": "Create a new cart",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "description": "Cart object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Cart"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Cart successfully created",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Created cart data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 201
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Response message",
+                    "example": "Cart successfully created!"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/cart/{id}": {
+        "patch": {
+          "tags": ["Cart"],
+          "summary": "Update a cart",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the cart to update",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "description": "Updated cart object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CartUpdate"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Cart successfully updated",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Updated cart data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Response message",
+                    "example": "Cart successfully updated!"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/cart/update/{id}": {
+        "patch": {
+          "tags": ["Cart"],
+          "summary": "Update product quantity in a cart",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the cart to update",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "description": "Product update object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/ProductUpdate"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Product quantity successfully updated",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Updated cart data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Response message",
+                    "example": "Product quantity successfully updated!"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 400
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Invalid operation type!"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Cart not found",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 404
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Cart not found!"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/products": {
+        "get": {
+          "tags": ["Product"],
+          "summary": "Get all products",
+          "responses": {
+            "200": {
+              "description": "Products successfully retrieved",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "description": "Product list",
+                    "items": {
+                      "$ref": "#/definitions/Product"
+                    },
+                    "example": []
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Response message",
+                    "example": "Products successfully found!"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "description": "Empty data",
+                    "example": []
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/products/{id}": {
+        "get": {
+          "tags": ["Product"],
+          "summary": "Get a product by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the product to retrieve",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Product successfully retrieved",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Product data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 200
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Response message",
+                    "example": "Product successfully found!"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": ["Product"],
+          "summary": "Update a product",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the product to update",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "description": "Updated product object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Product successfully updated",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Updated product data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 202
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Response message",
+                    "example": "Product successfully updated!"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": ["Product"],
+          "summary": "Delete a product",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the product to delete",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Product successfully deleted",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 204
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Response message",
+                    "example": "Product successfully deleted!"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "description": "Empty data",
+                    "example": {}
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "Status code",
+                    "example": 500
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Error message",
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+        "Cart": {
+          "type": "object",
+          "properties": {
+            "products": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CartProduct"
+              }
+            }
+          }
+        },
+        "CartProduct": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Product ID",
+              "example": "product_id"
+            },
+            "quantity": {
+              "type": "number",
+              "description": "Product quantity",
+              "example": 2
+            }
+          }
+        },
+        "Product": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Product title",
+              "example": "Sample Product"
+            },
+            "price": {
+              "type": "number",
+              "description": "Product price",
+              "example": 19.99
+            },
+            "description": {
+              "type": "string",
+              "description": "Product description",
+              "example": "This is a sample product"
+            },
+            "category": {
+              "type": "string",
+              "description": "Product category",
+              "example": "Electronics"
+            },
+            "image": {
+              "type": "string",
+              "description": "Product image URL",
+              "example": "https://example.com/sample_product.jpg"
+            },
+            "rating": {
+              "$ref": "#/definitions/ProductRating"
+            }
+          }
+        },
+        "ProductRating": {
+          "type": "object",
+          "properties": {
+            "rate": {
+              "type": "number",
+              "description": "Product rating",
+              "example": 4.5
+            },
+            "count": {
+              "type": "number",
+              "description": "Number of ratings",
+              "example": 100
+            }
+          }
+        }
+      }
+    }
+  
