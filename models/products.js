@@ -1,15 +1,18 @@
 const mongoose = require("mongoose");
 
-const ProductRating = new mongoose.Schema({
-  rate: {
-    type: Number,
-    required: false,
+const ProductRating = new mongoose.Schema(
+  {
+    rate: {
+      type: Number,
+      required: false,
+    },
+    count: {
+      type: Number,
+      required: false,
+    },
   },
-  count: {
-    type: Number,
-    required: false,
-  },
-}, { _id: false});
+  { _id: false }
+);
 
 const ProductSchema = new mongoose.Schema(
   {
@@ -35,6 +38,10 @@ const ProductSchema = new mongoose.Schema(
       required: true,
     },
     rating: ProductRating,
+    favorited: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

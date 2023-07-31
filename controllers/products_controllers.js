@@ -8,7 +8,7 @@ ProductController.prototype.get = async (req, res) => {
     res.status(200).send({
       data: products,
       status: 200,
-      message: "Product successfully finded!",
+      message: "Products successfully finded!",
     });
   } catch (err) {
     res.status(500).send({
@@ -20,9 +20,8 @@ ProductController.prototype.get = async (req, res) => {
 };
 
 ProductController.prototype.getById = async (req, res) => {
-  if (req.body)
     try {
-      const product = await Product.find();
+      const product = await Product.findById(req.params.id);
       res.status(200).send({
         data: product,
         status: 200,
@@ -85,6 +84,52 @@ ProductController.prototype.delete = async (req, res) => {
       data: {},
       status: 204,
       messagem: "Product successfuly deleted!",
+    });
+  } catch (err) {
+    res.status(500).send({
+      data: {},
+      status: 500,
+      message: err.message,
+    });
+  }
+};
+
+ProductController.prototype.getFavorites = async (req, res) => {
+  try {
+    const favorites_products = await Product.find({ favorited: true });
+    res.status(200).send({
+      data: favorites_products,
+      status: 200,
+      message: "Favorited products successfully finded!",
+    });
+  } catch (err) {
+    res.status(500).send({
+      data: {},
+      status: 500,
+      message: err.message,
+    });
+  }
+};
+
+ProductController.prototype.patchFavorites = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      product.favorited = !product.favorited;
+    } else {
+      res.status(404).send({
+        data: {},
+        status: 404,
+        message: "Product not found!",
+      });
+    }
+
+    product.save();
+
+    res.status(200).send({
+      data: product,
+      status: 200,
+      message: "Favorited products successfully finded!",
     });
   } catch (err) {
     res.status(500).send({
